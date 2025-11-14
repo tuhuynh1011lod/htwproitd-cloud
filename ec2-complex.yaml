@@ -1,20 +1,33 @@
 ---
-AWSTemplateFormatVersion: "2025-11-14"
-Description: "Explore using IaC - Cloud Formation"
-
-#Resource section
+AWSTemplateFormatVersion: "2010-09-09"
 Resources:
-  EC2Instance:
+  SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: Allow http to client host
+      VpcId: "vpc-002ac21515e6c8607"
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+        CidrIp: 0.0.0.0/0
+  Instance:
     Type: AWS::EC2::Instance
     Properties:
-	#Linux AMI
-	ImageId: ""
-	KeyName: "user07-key"
-	InstanceType: "t3.micro"
-	BlockDeviceMappings:
-  	- DeviceName: /dev/sda1
-    	  Ebs:
+      ImageId: "ami-0870af38096a5355b"
+      KeyName: "TuHuynh-keypair-htwproitd"
+      InstanceType: "t3.micro"
+      SecurityGroupIds: 
+        - !Ref SecurityGroup
+      BlockDeviceMappings:
+        - DeviceName: /dev/sda1
+          Ebs:
             VolumeSize: 50
-  	- DeviceName: xvdbm
+        - DeviceName: xvdbm
           Ebs:
             VolumeSize: 100
