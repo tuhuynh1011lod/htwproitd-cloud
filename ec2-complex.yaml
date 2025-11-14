@@ -1,0 +1,20 @@
+---
+AWSTemplateFormatVersion: "2025-11-14"
+Description: "Explore using IaC - Cloud Formation"
+
+#Resource section
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+	#Linux AMI
+	ImageId: ""
+	KeyName: "user07-key"
+	InstanceType: "t3.micro"
+	BlockDeviceMappings:
+  	- DeviceName: /dev/sda1
+    	  Ebs:
+            VolumeSize: 50
+  	- DeviceName: xvdbm
+          Ebs:
+            VolumeSize: 100
