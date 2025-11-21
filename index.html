@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        form {
+            margin: 20px 0;
+        }
+        input, select, button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello, World!</h1>
+        <p>Customize your greeting below:</p>
+        <form id="customizeForm">
+            <input type="text" id="name" placeholder="Enter your name" required>
+            <select id="city" required>
+                <option value="" disabled selected>Select your city</option>
+                <option value="Berlin">Berlin</option>
+                <option value="Hamburg">Hamburg</option>
+                <option value="Munich">Munich</option>
+                <option value="Cologne">Cologne</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('customizeForm');
+        const output = document.getElementById('output');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const city = document.getElementById('city').value;
+            output.textContent = `Hello, ${name} from ${city}!`;
+        });
+    </script>
+</body>
+</html>
