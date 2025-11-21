@@ -62,10 +62,29 @@
 
         form.addEventListener('submit', function (event) {
             event.preventDefault();
-            const name = document.getElementById('name').value;
+            const name = document.getElementById('name').value.trim();
             const city = document.getElementById('city').value;
-            output.textContent = `Hello, ${name} from ${city}!`;
+
+            if (name && city) {
+                output.textContent = `Hello, ${name} from ${city}!`;
+            } else {
+                output.textContent = 'Please fill in all fields.';
+            }
         });
+        fetch('https://z3w5dl93ql.execute-api.eu-west-1.amazonaws.com/default/TuHuynh-function', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, city }),
+            })
+            .then(response => response.json())
+            .then(data => {
+            console.log('Success:', data);
+            })
+            .catch((error) => {
+            console.error('Error:', error);
+            });
     </script>
 </body>
 
