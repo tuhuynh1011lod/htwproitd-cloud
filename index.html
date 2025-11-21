@@ -67,24 +67,25 @@
 
             if (name && city) {
                 output.textContent = `Hello, ${name} from ${city}!`;
+
+                fetch('https://z3w5dl93ql.execute-api.eu-west-1.amazonaws.com/dev/TuHuynh-function', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, city }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
             } else {
                 output.textContent = 'Please fill in all fields.';
             }
         });
-        fetch('https://z3w5dl93ql.execute-api.eu-west-1.amazonaws.com/dev/TuHuynh-function', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name, city }),
-            })
-            .then(response => response.json())
-            .then(data => {
-            console.log('Success:', data);
-            })
-            .catch((error) => {
-            console.error('Error:', error);
-            });
     </script>
 </body>
 
