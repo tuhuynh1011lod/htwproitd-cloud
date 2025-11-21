@@ -68,12 +68,12 @@
             if (name && city) {
                 output.textContent = `Hello, ${name} from ${city}!`;
 
-                fetch('https://z3w5dl93ql.execute-api.eu-west-1.amazonaws.com/dev/TuHuynh-function', {
+                fetch('https://49xribm65h.execute-api.eu-west-1.amazonaws.com/default/TuHuynh-function', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ name, city }),
+                    body: JSON.stringify({ "name": name, "From": city}),
                 })
                 .then(response => response.json())
                 .then(data => {
